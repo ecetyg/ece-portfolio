@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ece Toygun | Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <style>
+    :root {
+      --primary: #4f46e5;
+      --primary-dark: #3730a3;
+      --primary-soft: #eef2ff;
+      --text: #0f172a;
+      --muted: #475569;
+      --light: #f8fafc;
+      --card: #ffffff;
+      --border: #e2e8f0;
+      --dark: #020617;
+      --shadow: 0 18px 45px rgba(15, 23, 42, 0.08);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #ffffff;
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .container {
+      width: min(1120px, 92%);
+      margin: 0 auto;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(255, 255, 255, 0.88);
+      backdrop-filter: blur(18px);
+      border-bottom: 1px solid rgba(226, 232, 240, 0.7);
+    }
+
+    nav {
+      height: 74px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 46px;
+      font-weight: 700;
+      font-size: 15px;
+    }
+
+    nav a {
+      transition: 0.2s ease;
+    }
+
+    nav a:hover {
+      color: var(--primary);
+    }
+
+    .download-btn {
+      position: absolute;
+      right: 5%;
+      top: 14px;
+      padding: 13px 22px;
+      border-radius: 9px;
+      background: linear-gradient(135deg, var(--primary), #6d5dfc);
+      color: white;
+      box-shadow: 0 10px 22px rgba(79, 70, 229, 0.25);
+    }
+
+    .hero {
+      min-height: 520px;
+      background:
+        radial-gradient(circle at 85% 40%, rgba(124, 58, 237, 0.18), transparent 32%),
+        linear-gradient(135deg, #ffffff 0%, #f7f7ff 52%, #eef2ff 100%);
+      overflow: hidden;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      gap: 40px;
+      min-height: 520px;
+    }
+
+    .eyebrow {
+      color: var(--primary);
+      font-weight: 800;
+      font-size: 25px;
+      margin-bottom: 12px;
+    }
+
+    h1 {
+      font-size: clamp(52px, 7vw, 82px);
+      line-height: 1;
+      letter-spacing: -4px;
+      margin-bottom: 20px;
+    }
+
+    .subtitle {
+      font-size: 25px;
+      color: #111827;
+      font-weight: 500;
+      margin-bottom: 34px;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 16px;
+      margin-bottom: 28px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      padding: 15px 26px;
+      border-radius: 9px;
+      font-weight: 700;
+      border: 1px solid var(--primary);
+      transition: 0.25s ease;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary), #5b55ee);
+      color: white;
+      box-shadow: 0 12px 26px rgba(79, 70, 229, 0.28);
+    }
+
+    .btn-outline {
+      color: var(--primary);
+      background: white;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .socials {
+      display: flex;
+      gap: 23px;
+      font-size: 28px;
+    }
+
+    .socials a:hover {
+      color: var(--primary);
+    }
+
+    .hero-image {
+      position: relative;
+      height: 490px;
+      display: flex;
+      align-items: end;
+      justify-content: center;
+    }
+
+    .circle {
+      position: absolute;
+      width: 430px;
+      height: 430px;
+      border-radius: 50% 50% 0 0;
+      background: linear-gradient(145deg, #d8d5ff, #9a92ff);
+      bottom: 0;
+      right: 3%;
+    }
+
+    .portrait-placeholder {
+      position: relative;
+      width: 390px;
+      height: 430px;
+      border-radius: 220px 220px 0 0;
+      background: linear-gradient(145deg, #111827, #334155);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      text-align: center;
+      padding: 30px;
+      font-size: 18px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .portrait-placeholder::before {
+      content: '';
+      position: absolute;
+      inset: 18px;
+      border-radius: 200px 200px 0 0;
+      border: 1px solid rgba(255,255,255,0.22);
+    }
+
+    .portrait-placeholder span {
+      position: relative;
+      max-width: 260px;
+    }
+
+    section {
+      padding: 34px 0 56px;
+    }
+
+    .section-title {
+      font-size: 28px;
+      margin-bottom: 28px;
+      position: relative;
+      display: inline-block;
+    }
+
+    .section-title::after {
+      content: '';
+      display: block;
+      width: 25px;
+      height: 3px;
+      background: var(--primary);
+      margin-top: 8px;
+      border-radius: 99px;
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 58px;
+      align-items: start;
+    }
+
+    .about-copy {
+      max-width: 470px;
+      color: #1f2937;
+    }
+
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+    }
+
+    .info-card,
+    .project-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      box-shadow: var(--shadow);
+      padding: 24px;
+    }
+
+    .info-card {
+      display: flex;
+      gap: 18px;
+      min-height: 125px;
+    }
+
+    .icon {
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      color: var(--primary);
+      font-size: 25px;
+      flex: 0 0 auto;
+    }
+
+    .info-card h3,
+    .experience-item h3,
+    .project-card h3 {
+      font-size: 16px;
+      margin-bottom: 6px;
+    }
+
+    .small {
+      font-size: 14px;
+      color: #1f2937;
+      line-height: 1.55;
+    }
+
+    .experience-section {
+      background: linear-gradient(180deg, #fbfdff, #f8fafc);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .section-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .view-link {
+      color: var(--primary);
+      font-weight: 700;
+      font-size: 14px;
+    }
+
+    .experience-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 34px;
+      margin-top: 10px;
+    }
+
+    .experience-item {
+      position: relative;
+      display: grid;
+      grid-template-columns: 88px 1fr;
+      gap: 20px;
+      align-items: start;
+    }
+
+        .logo-circle {
+      width: 86px;
+      height: 86px;
+      border-radius: 50%;
+      background: #ffffff;
+      box-shadow: var(--shadow);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      padding: 0;
+    }
+
+    .logo-circle img {
+      display: block;
+      object-fit: contain;
+      object-position: center center;
+    }
+
+    .logo-circle.artiwise-logo img {
+      width: 72px;
+      height: 72px;
+      object-fit: contain;
+      object-position: center center;
+      transform: none;
+    }
+
+    .logo-circle.bupilic-logo img {
+      width: 76px;
+      height: 76px;
+      object-fit: contain;
+      object-position: center center;
+      transform: scale(1.14);
+    }
+
+    .logo-circle.mdp-logo {
+      background: #000000;
+      border-color: #000000;
+    }
+
+    .logo-circle.mdp-logo img {
+      width: 86px;
+      height: 86px;
+      object-fit: cover;
+      object-position: center center;
+      transform: scale(1.22);
+    }
+
+    .company {
+      color: var(--primary);
+      font-weight: 700;
+      font-size: 14px;
+    }
+
+    .date {
+      color: #64748b;
+      font-size: 13px;
+      margin: 3px 0 12px;
+    }
+
+    .project-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .all-projects {
+      display: none;
+      margin-top: 34px;
+      padding-top: 28px;
+      border-top: 1px solid var(--border);
+    }
+
+    .all-projects.show {
+      display: block;
+    }
+
+    .subsection-title {
+      font-size: 22px;
+      margin-bottom: 20px;
+      color: var(--text);
+    }
+
+    .all-projects .project-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .project-icon {
+      width: 72px;
+      height: 72px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, var(--primary), #7c73ff);
+      color: white;
+      display: grid;
+      place-items: center;
+      font-size: 31px;
+      margin-bottom: 18px;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    .tag {
+      padding: 6px 13px;
+      background: var(--primary-soft);
+      color: var(--primary);
+      border-radius: 7px;
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+    }
+
+    .skill-col {
+      border-left: 1px solid #cbd5e1;
+      padding-left: 24px;
+    }
+
+    .skill-title {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      font-weight: 800;
+      margin-bottom: 15px;
+    }
+
+    .skill-title i {
+      color: var(--primary);
+      font-size: 22px;
+    }
+
+    .skill-col p {
+      font-size: 14px;
+      margin-bottom: 7px;
+      color: #1f2937;
+    }
+
+    footer {
+      background: radial-gradient(circle at 90% 40%, rgba(79, 70, 229, 0.35), transparent 28%), var(--dark);
+      color: white;
+      padding: 42px 0;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 35px;
+      align-items: center;
+    }
+
+    footer .section-title {
+      margin-bottom: 18px;
+    }
+
+    .contact-line {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+      margin-bottom: 14px;
+      color: #e2e8f0;
+    }
+
+    @media (max-width: 900px) {
+      nav {
+        justify-content: flex-start;
+        overflow-x: auto;
+        gap: 22px;
+      }
+
+      .download-btn {
+        display: none;
+      }
+
+      .hero-grid,
+      .about-grid,
+      .experience-grid,
+      .project-grid,
+      .skills-grid,
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-grid {
+        padding-top: 52px;
+      }
+
+      .hero-image {
+        height: 360px;
+      }
+
+      .circle {
+        width: 310px;
+        height: 310px;
+        right: auto;
+      }
+
+      .portrait-placeholder {
+        width: 280px;
+        height: 310px;
+      }
+
+      .info-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .skills-grid {
+        gap: 10px;
+      }
+
+      .all-projects .project-grid {
+        grid-template-columns: 1fr;
+      }
+
+      h1 {
+        letter-spacing: -2px;
+      }
+    }
+  
+.portrait-placeholder img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center center;
+    }
+
+</style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <nav>
+        <a class="download-btn" href="assets/Ece_Toygun_CV.pdf" download aria-label="Download CV">Download CV <i class="fa-solid fa-download"></i></a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="container hero-grid">
+        <div>
+          <p class="eyebrow">Hi, I'm</p>
+          <h1>Ece Toygun</h1>
+          <p class="subtitle">Final-Year Computer Engineering Student</p>
+          <div class="hero-actions">
+            <a href="mailto:toygunece@gmail.com" class="btn btn-outline">Get In Touch <i class="fa-regular fa-envelope"></i></a>
+          </div>
+          <div class="socials">
+            <a href="https://www.linkedin.com/in/ecetoygun" target="_blank" aria-label="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+            <a href="https://github.com/ecetyg" target="_blank" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+            <a href="mailto:toygunece@gmail.com" aria-label="Email"><i class="fa-regular fa-envelope"></i></a>
+          </div>
+        </div>
+        <div class="hero-image">
+          <div class="circle"></div>
+          <div class="portrait-placeholder"><img src="assets/ece-photo.jpeg" alt="Ece Toygun"></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="container about-grid">
+        <div>
+          <h2 class="section-title">About Me</h2>
+          <p class="about-copy">
+            I'm a final-year Computer Engineering student with a passion for building, learning, and exploring new technologies.
+            Throughout my studies, internships, and research projects, I have had the opportunity to work on a wide range of
+            technology-driven initiatives, from software development and AI-powered applications to business and integration systems.
+            I enjoy turning ideas into real projects, stepping outside my comfort zone, and taking on new challenges. Driven by
+            curiosity and continuous learning, I am always eager to contribute to meaningful projects while growing both technically
+            and professionally.
+          </p>
+        </div>
+        <div class="info-grid">
+          <div class="info-card">
+            <div class="icon"><i class="fa-solid fa-graduation-cap"></i></div>
+            <div>
+              <h3>Education</h3>
+              <p class="small">Computer Engineering<br>Istanbul Beykent University<br>2022 – Present</p>
+            </div>
+          </div>
+          <div class="info-card">
+            <div class="icon"><i class="fa-solid fa-location-dot"></i></div>
+            <div>
+              <h3>Location</h3>
+              <p class="small">Beşiktaş, Istanbul, Türkiye</p>
+            </div>
+          </div>
+          <div class="info-card">
+            <div class="icon"><i class="fa-solid fa-globe"></i></div>
+            <div>
+              <h3>Languages</h3>
+              <p class="small">Turkish (Native)<br>English (Advanced)</p>
+            </div>
+          </div>
+          <div class="info-card">
+            <div class="icon"><i class="fa-regular fa-star"></i></div>
+            <div>
+              <h3>Focus Areas</h3>
+              <p class="small">Artificial Intelligence · Data & Analytics · Software Engineering · Mobile & Application Development</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="experience-section" id="experience">
+      <div class="container">
+        <div class="section-head">
+          <h2 class="section-title">Experience</h2>
+        </div>
+        <div class="experience-grid">
+          <article class="experience-item">
+            <div class="logo-circle artiwise-logo"><img src="assets/artiwise-logo.png" alt="Artiwise logo"></div>
+            <div>
+              <h3>Data Science Intern</h3>
+              <p class="company">Artiwise</p>
+              <p class="date">Oct 2025 – Mar 2026</p>
+              <p class="small">Developed preprocessing pipelines using Python (Pandas, NumPy) and supported NLP model performance through EDA and feature-level refinements for high-quality machine learning training sets.</p>
+            </div>
+          </article>
+          <article class="experience-item">
+            <div class="logo-circle bupilic-logo"><img src="assets/bupilic-logo.png" alt="Bupiliç logo"></div>
+            <div>
+              <h3>IT Intern</h3>
+              <p class="company">Bupiliç</p>
+              <p class="date">June 2025 – Sep 2025</p>
+              <p class="small">Gained hands-on experience in corporate IT infrastructure, hardware and software support, network configurations, and internal workflow improvements across departments.</p>
+            </div>
+          </article>
+          <article class="experience-item">
+            <div class="logo-circle mdp-logo"><img src="assets/mdp-logo.png" alt="MDP Group logo"></div>
+            <div>
+              <h3>Backend & Integration Intern</h3>
+              <p class="company">MDP Group</p>
+              <p class="date">Dec 2023 – Feb 2024</p>
+              <p class="small">Contributed to the MIP middleware platform using C++. Worked on backend logic, data synchronization workflows, and integration points for seamless system communication.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects">
+      <div class="container">
+        <div class="section-head">
+          <h2 class="section-title">Projects</h2>
+          <a href="#all-projects" class="view-link" id="viewAllProjects">View All Projects <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+
+        <div class="project-grid featured-projects">
+          <article class="project-card">
+            <div class="project-icon"><i class="fa-solid fa-robot"></i></div>
+            <h3>TEKNOFEST Digital Technologies Project</h3>
+            <p class="small">Served as the Software Team Lead in a TEKNOFEST finalist project focused on autonomous robotic systems. Led software planning while contributing directly to the design and implementation of the robot's core algorithms, autonomous decision-making, navigation logic, computer vision functionalities, and system integration across software and hardware components.</p>
+            <div class="tags"><span class="tag">Python</span><span class="tag">Computer Vision</span><span class="tag">Autonomous Systems</span><span class="tag">Team Leadership</span></div>
+          </article>
+
+          <article class="project-card">
+            <div class="project-icon"><i class="fa-solid fa-comments"></i></div>
+            <h3>Municipal AI Chatbot</h3>
+            <p class="small">Designed a web-based chatbot solution that utilizes rule-based NLP and keyword matching to interpret user requests and deliver information about municipal services. Contributed to chatbot logic design, system architecture, workflow modeling, and user experience planning.</p>
+            <div class="tags"><span class="tag">Python</span><span class="tag">NLP</span><span class="tag">Chatbot Development</span><span class="tag">System Design</span></div>
+          </article>
+
+          <article class="project-card">
+            <div class="project-icon"><i class="fa-solid fa-gamepad"></i></div>
+            <h3>Farm Crush Game</h3>
+            <p class="small">Developed a tile-matching puzzle game using Unity and C#. Implemented dynamic block-clearing mechanics, score tracking, deadlock detection with automatic shuffle functionality, audio controls, and a custom-designed farm-themed user interface.</p>
+            <div class="tags"><span class="tag">Unity</span><span class="tag">C#</span><span class="tag">Game Development</span><span class="tag">OOP</span></div>
+          </article>
+        </div>
+
+        <div id="all-projects" class="all-projects">
+          <h3 class="subsection-title">Additional Projects</h3>
+          <div class="project-grid">
+            <article class="project-card">
+              <div class="project-icon"><i class="fa-solid fa-universal-access"></i></div>
+              <h3>Smart Kiosk for Accessibility & Waste Reduction</h3>
+              <p class="small">Contributed to the development of a smart kiosk application designed to improve accessibility and reduce food waste in social dining environments. Developed mobile application components using Flutter and Dart, focusing on user-friendly interfaces, accessible user experiences, and digital ordering workflows.</p>
+              <div class="tags"><span class="tag">Flutter</span><span class="tag">Dart</span><span class="tag">Accessibility</span><span class="tag">UI/UX</span></div>
+            </article>
+
+            <article class="project-card">
+              <div class="project-icon"><i class="fa-solid fa-chart-line"></i></div>
+              <h3>Customer Feedback Analysis System</h3>
+              <p class="small">Developed a text analytics pipeline for processing and categorizing customer feedback data. Performed data cleaning, preprocessing, and exploratory analysis using Python, Pandas, and NumPy to transform unstructured text into structured datasets for downstream NLP and machine learning workflows.</p>
+              <div class="tags"><span class="tag">Python</span><span class="tag">Pandas</span><span class="tag">NumPy</span><span class="tag">NLP</span></div>
+            </article>
+
+            <article class="project-card">
+              <div class="project-icon"><i class="fa-solid fa-plane"></i></div>
+              <h3>Airline Voice-of-Customer Analytics</h3>
+              <p class="small">Built a data preprocessing and analysis workflow for airline customer feedback datasets. Applied text cleaning, categorization, and feature engineering techniques to improve data quality and support AI-driven customer experience analysis.</p>
+              <div class="tags"><span class="tag">Python</span><span class="tag">NLP</span><span class="tag">Data Preprocessing</span><span class="tag">Machine Learning</span></div>
+            </article>
+
+            <article class="project-card">
+              <div class="project-icon"><i class="fa-solid fa-shield-halved"></i></div>
+              <h3>Smart City Banking System</h3>
+              <p class="small">Designed and prototyped a smart city automation and digital banking platform integrating secure payment services, IoT-based city management, and cybersecurity mechanisms. Created UML diagrams, GUI mockups, system architecture models, and a Java-based prototype while conducting threat modeling, network security analysis, and risk assessment activities.</p>
+              <div class="tags"><span class="tag">Java</span><span class="tag">UML</span><span class="tag">Cybersecurity</span><span class="tag">Kali Linux</span></div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills">
+      <div class="container">
+        <h2 class="section-title">Skills</h2>
+        <div class="skills-grid">
+          <div class="skill-col">
+            <div class="skill-title"><i class="fa-solid fa-code"></i> Programming</div>
+            <p>Python</p>
+            <p>Java</p>
+            <p>C#</p>
+            <p>SQL</p>
+          </div>
+          <div class="skill-col">
+            <div class="skill-title"><i class="fa-solid fa-brain"></i> AI & Data Science</div>
+            <p>Machine Learning</p>
+            <p>NLP</p>
+            <p>Pandas & NumPy</p>
+            <p>TensorFlow</p>
+          </div>
+          <div class="skill-col">
+            <div class="skill-title"><i class="fa-solid fa-mobile-screen"></i> Development</div>
+            <p>Flutter & Dart</p>
+            <p>Unity</p>
+            <p>Backend Development</p>
+          </div>
+          <div class="skill-col">
+            <div class="skill-title"><i class="fa-solid fa-screwdriver-wrench"></i> Tools & Platforms</div>
+            <p>Git & GitHub</p>
+            <p>Docker</p>
+            <p>Jupyter Notebook</p>
+            <p>VS Code</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer id="contact">
+    <div class="container footer-grid">
+      <div>
+        <h2 class="section-title">Let's Connect!</h2>
+        <p class="small" style="color:#e2e8f0">I am always open to discussing new projects, opportunities and ideas. Feel free to reach out!</p>
+      </div>
+      <div>
+        <a class="contact-line" href="mailto:toygunece@gmail.com"><i class="fa-regular fa-envelope"></i> toygunece@gmail.com</a>
+        <a class="contact-line" href="https://www.linkedin.com/in/ecetoygun" target="_blank"><i class="fa-brands fa-linkedin-in"></i> linkedin.com/in/ecetoygun</a>
+        <a class="contact-line" href="https://github.com/ecetyg" target="_blank"><i class="fa-brands fa-github"></i> github.com/ecetyg</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const viewAllProjects = document.getElementById('viewAllProjects');
+    const allProjects = document.getElementById('all-projects');
+
+    viewAllProjects.addEventListener('click', function(event) {
+      event.preventDefault();
+      allProjects.classList.toggle('show');
+
+      if (allProjects.classList.contains('show')) {
+        viewAllProjects.innerHTML = 'Hide Additional Projects <i class="fa-solid fa-arrow-up"></i>';
+        allProjects.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      } else {
+        viewAllProjects.innerHTML = 'View All Projects <i class="fa-solid fa-arrow-right"></i>';
+      }
+    });
+  </script>
+
+</body>
+</html>
